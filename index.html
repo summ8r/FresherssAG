@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RGGEC Freshers 2026 | The Official Dispatch</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rozha+One&family=Space+Grotesk:wght@500;700;900&family=Work+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-paper: #eae3d2;
+      --crimson: #991b1b;
+      --deep-crimson: #701010;
+      --card-white: #fffdf9;
+      --ink: #121212;
+      --yellow: #f5c531;
+      --cyan: #26a5b5;
+      --pink: #ff477e;
+      --border: #1a1a1a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-paper);
+      /* Halftone vintage newsprint texture */
+      background-image: radial-gradient(var(--border) 0.65px, transparent 0.65px);
+      background-size: 15px 15px;
+      color: var(--ink);
+      font-family: 'Work Sans', sans-serif;
+      line-height: 1.4;
+      overflow-x: hidden;
+      padding-bottom: 70px;
+    }
+
+    /* Top Running Marquee */
+    .ticker-bar {
+      background: var(--yellow);
+      border-bottom: 2.5px solid var(--border);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 8px 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .ticker-inner {
+      display: inline-block;
+      animation: tickerRun 18s linear infinite;
+    }
+    @keyframes tickerRun {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+
+    /* Header & Ransom Blocks */
+    header {
+      text-align: center;
+      padding-top: 10px;
+    }
+    .college-tag {
+      display: inline-block;
+      background: var(--ink);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      padding: 4px 12px;
+      box-shadow: 4px 4px 0 var(--crimson);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .ransom-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0;
+    }
+    .ransom-box {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 7vw, 3rem);
+      font-weight: 900;
+      border: 3px solid var(--border);
+      box-shadow: 4px 4px 0 var(--border);
+      padding: 2px 14px;
+      line-height: 1.1;
+    }
+    .r-1 { background: #fff; transform: rotate(-3deg); }
+    .r-2 { background: var(--crimson); color: #fff; transform: rotate(2deg); }
+    .r-3 { background: var(--yellow); transform: rotate(-2deg); }
+    .r-4 { background: #fff; transform: rotate(3deg); }
+
+    .hindi-title {
+      font-family: 'Rozha One', serif;
+      font-size: 1.8rem;
+      color: var(--crimson);
+      margin-top: 6px;
+    }
+
+    /* Pop-Out Clickable Sticker Row */
+    .pop-stickers-wrap {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .pop-badge {
+      display: inline-block;
+      font-family: 'Permanent Marker', cursive;
+      border: 3px solid #fff;
+      filter: drop-shadow(4px 4px 0 var(--border));
+      cursor: pointer;
+      user-select: none;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+    }
+    .pop-badge:hover {
+      transform: scale(1.12) rotate(0deg) !important;
+      filter: drop-shadow(6px 6px 0 var(--border));
+    }
+    .pop-badge:active {
+      transform: scale(0.95);
+    }
+    .badge-pink { background: var(--pink); color: #fff; transform: rotate(-4deg); }
+    .badge-yellow { background: var(--yellow); color: var(--ink); transform: rotate(3deg); }
+    .badge-cyan { background: var(--cyan); color: var(--ink); transform: rotate(-2deg); }
+
+    /* Live Countdown Clock */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .count-cell {
+      background: var(--card-white);
+      border: 2px solid var(--border);
+      box-shadow: 3px 3px 0 var(--border);
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .count-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--crimson);
+      display: block;
+    }
+    .count-txt {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Zine Container Cards */
+    .zine-card {
+      background: var(--card-white);
+      border: 3px solid var(--border);
+      box-shadow: 6px 6px 0 var(--border);
+      padding: 26px 20px;
+      position: relative;
+    }
+    .zine-card.crimson-mode {
+      background: var(--crimson);
+      color: #fff;
+    }
+    .tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 22px;
+      background: rgba(230, 222, 202, 0.85);
+      border-left: 2px dashed rgba(0,0,0,0.15);
+      border-right: 2px dashed rgba(0,0,0,0.15);
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .crimson-mode .card-title {
+      border-bottom-color: rgba(255,255,255,0.35);
+      color: var(--yellow);
+    }
+
+    /* Tables */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .info-table tr {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .crimson-mode .info-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .info-table tr:last-child {
+      border-bottom: none;
+    }
+    .info-table td {
+      padding: 10px 4px;
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+    .col-lbl {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: 32%;
+      color: #666;
+    }
+    .crimson-mode .col-lbl {
+      color: var(--yellow);
+    }
+    .col-val {
+      font-weight: 700;
+    }
+
+    /* Side Image Stickers */
+    .side-sticker {
+      position: absolute;
+      width: 82px;
+      height: auto;
+      z-index: 25;
+      cursor: pointer;
+      user-select: none;
+      filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.85));
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .side-sticker:hover {
+      transform: scale(1.18) rotate(0deg) !important;
+      filter: drop-shadow(6px 6px 0px rgba(0, 0, 0, 0.95));
+    }
+
+    .sticker-top-right {
+      top: -30px;
+      right: -25px;
+      transform: rotate(12deg);
+    }
+    .sticker-bottom-left {
+      bottom: -30px;
+      left: -25px;
+      transform: rotate(-10deg);
+    }
+    .sticker-mid-right {
+      top: 50%;
+      right: -28px;
+      transform: translateY(-50%) rotate(8deg);
+    }
+    .sticker-mid-left {
+      top: 50%;
+      left: -28px;
+      transform: translateY(-50%) rotate(-12deg);
+    }
+
+    @media (max-width: 520px) {
+      .side-sticker { width: 62px; }
+      .sticker-top-right { right: -12px; top: -18px; }
+      .sticker-bottom-left { left: -12px; bottom: -18px; }
+      .sticker-mid-right { right: -12px; }
+      .sticker-mid-left { left: -12px; }
+    }
+
+    /* Senior Welcome / Meme Box */
+    .teaser-box {
+      border: 2px dashed var(--border);
+      background: rgba(245, 197, 49, 0.15);
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+    }
+    .classified-stamp {
+      display: inline-block;
+      font-family: 'Permanent Marker', cursive;
+      color: var(--crimson);
+      border: 2px solid var(--crimson);
+      padding: 4px 10px;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      transform: rotate(-3deg);
+      margin-bottom: 8px;
+    }
+    .teaser-text {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.5;
+    }
+    .meme-badge {
+      margin-top: 14px;
+      display: inline-block;
+      background: var(--crimson);
+      color: #fff;
+      padding: 8px 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      transform: rotate(-2deg);
+      box-shadow: 3px 3px 0 var(--border);
+    }
+
+    /* Chips & Branches */
+    .chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip {
+      border: 2px solid var(--border);
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      box-shadow: 2px 2px 0 var(--border);
+      background: #fff;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Ticker -->
+  <div class="ticker-bar">
+    <div class="ticker-inner">
+      ⚡ OFFICIAL FRESHERS 2026 • R.G.G.E.C. NAGROTA BAGWAN • 16TH SEPT • BY AYUSH(GOOGLY)• AUDITORIUM • DRESS CODE: RETRO BOLLYWOOD • ⚡ OFFICIAL FRESHERS 2026 • R.G.G.E.C. NAGROTA BAGWAN • 16TH SEPT • AUDITORIUM • DRESS CODE: RETRO BOLLYWOOD •
+    </div>
+  </div>
+
+  <div class="wrapper">
+
+    <!-- Header Section -->
+    <header>
+      <div class="college-tag">R.G.G.E.C. NAGROTA BAGWAN, KANGRA</div>
+      <div class="ransom-row">
+        <span class="ransom-box r-1">B</span>
+        <span class="ransom-box r-2">A</span>
+        <span class="ransom-box r-3">S</span>
+        <span class="ransom-box r-4">H</span>
+      </div>
+      <div class="hindi-title">स्वागतम् • Freshers '26</div>
+
+      <!-- Pop-Out Clickable Sticker Elements -->
+      <div class="pop-stickers-wrap">
+        <span class="pop-badge badge-pink">📢 FULL SQUAD</span>
+        <span class="pop-badge badge-yellow">☕ KANGRA VIBES</span>
+        <span class="pop-badge badge-cyan">🎟️ FREE PASS</span>
+      </div>
+
+      <!-- Auto Ticking Countdown -->
+      <div class="countdown-grid">
+        <div class="count-cell">
+          <span class="count-num" id="d-num">00</span>
+          <span class="count-txt">Days</span>
+        </div>
+        <div class="count-cell">
+          <span class="count-num" id="h-num">00</span>
+          <span class="count-txt">Hours</span>
+        </div>
+        <div class="count-cell">
+          <span class="count-num" id="m-num">00</span>
+          <span class="count-txt">Mins</span>
+        </div>
+        <div class="count-cell">
+          <span class="count-num" id="s-num">00</span>
+          <span class="count-txt">Secs</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- CARD 1: PRIMARY TABLE + FLANKING SIDE STICKERS -->
+    <section class="zine-card crimson-mode" style="transform: rotate(-0.6deg);">
+      <div class="tape"></div>
+
+      <!-- STICKER 1: Top Right (Path: assets/megaphone.png) -->
+      <img src="assets/megaphone.png" 
+           alt="Megaphone Sticker" 
+           class="side-sticker sticker-top-right" 
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/3588/3588658.png'">
+
+      <!-- STICKER 2: Bottom Left (Path: assets/radio.png) -->
+      <img src="assets/radio.png" 
+           alt="Radio Sticker" 
+           class="side-sticker sticker-bottom-left" 
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/2859/2859706.png'">
+
+      <div class="card-title">
+        <span>⚡ Main Logistics</span>
+        <span style="font-size: 0.75rem; background: #fff; color: var(--ink); padding: 2px 6px;">DISPATCH</span>
+      </div>
+
+      <!-- Logistics Table -->
+      <table class="info-table">
+        <tr>
+          <td class="col-lbl">Date</td>
+          <td class="col-val">16th September 2026</td>
+        </tr>
+        <tr>
+          <td class="col-lbl">Reporting</td>
+          <td class="col-val">09:30 AM Sharp</td>
+        </tr>
+        <tr>
+          <td class="col-lbl">Venue</td>
+          <td class="col-val">Auditorium, Applied Sciences Block</td>
+        </tr>
+        <tr>
+          <td class="col-lbl">Theme</td>
+          <td class="col-val">Bollywood Retro / 90s Pulp</td>
+        </tr>
+        <tr>
+          <td class="col-lbl">Cadets</td>
+          <td class="col-val">All 1st-Year Engineering Batches</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- CARD 2: SENIOR INVITATION & MEME TEASER -->
+    <section class="zine-card" style="transform: rotate(0.5deg);">
+      <div class="card-title">
+        <span>🎬 The Senior Dispatch</span>
+        <span style="font-size: 0.75rem; background: var(--yellow); color: var(--ink); padding: 2px 8px; font-weight: 900;">ALL SENIORS INVITE YOU</span>
+      </div>
+      
+      <div class="teaser-box">
+        <div class="classified-stamp">OFFICIAL WELCOME CALL</div>
+        <p class="teaser-text">
+          All the seniors are officially inviting you to your grand welcome bash! Get ready for an absolute riot on the stage.
+        </p>
+        <div class="meme-badge">
+          "Bachha hai re tu mera... aaja tujhe fanta pilau! 🥤"
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 3: GATE PROTOCOL TABLE + FLANKING SIDE STICKERS -->
+    <section class="zine-card" style="transform: rotate(-0.4deg);">
+
+      <!-- STICKER 3: Mid Right (Path: assets/stamp.png) -->
+      <img src="assets/stamp.png" 
+           alt="Stamp Sticker" 
+           class="side-sticker sticker-mid-right" 
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/9746/9746197.png'">
+
+      <!-- STICKER 4: Mid Left (Path: assets/cassette.png) -->
+      <img src="assets/cassette.png" 
+           alt="Cassette Sticker" 
+           class="side-sticker sticker-mid-left" 
+           onerror="this.src='https://cdn-icons-png.flaticon.com/512/1828/1828884.png'">
+
+      <div class="card-title">
+        <span>📋 Gate Protocol</span>
+      </div>
+
+      <table class="info-table">
+        <tr>
+          <td class="col-lbl">Entry Pass</td>
+          <td class="col-val">Temporary Student ID or Allotment Slip</td>
+        </tr>
+        <tr>
+          <td class="col-lbl">Dress Code</td>
+          <td class="col-val">Retro / Bollywood Chic / Casual Smart</td>
+        </tr>
+        <tr>
+          <td class="col-lbl">Discipline</td>
+          <td class="col-val">Strict college decorum enforced</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- CARD 4: PARTICIPATING BRANCHES -->
+    <section class="zine-card" style="transform: rotate(0.4deg);">
+      <div class="card-title">
+        <span>⚔️ Departments Assembled</span>
+      </div>
+      <p style="font-size: 0.85rem; color: #555;">All branches report to their designated seating rows:</p>
+      <div class="chips-row">
+        <span class="chip" style="background: var(--yellow);">CSE Squad</span>
+        <span class="chip" style="background: var(--cyan);">ECE Cadets</span>
+        <span class="chip" style="background: var(--pink); color: white;">Civil Engineering</span>
+        <span class="chip">Mechanical Rig</span>
+        <span class="chip">Electrical League</span>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div style="display: inline-block; background: var(--yellow); padding: 6px 14px; border: 2px solid var(--border); box-shadow: 3px 3px 0 var(--border);">
+        DESIGN: AYUSH (GOOGLY) • RGGEC 2026
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Real-Time Countdown Script -->
+  <script>
+    const targetDate = new Date("September 16, 2026 09:30:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("d-num").innerText = "00";
+        document.getElementById("h-num").innerText = "00";
+        document.getElementById("m-num").innerText = "00";
+        document.getElementById("s-num").innerText = "00";
+        return;
+      }
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("d-num").innerText = d < 10 ? '0' + d : d;
+      document.getElementById("h-num").innerText = h < 10 ? '0' + h : h;
+      document.getElementById("m-num").innerText = m < 10 ? '0' + m : m;
+      document.getElementById("s-num").innerText = s < 10 ? '0' + s : s;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
